@@ -46,12 +46,11 @@ Button/styles/hover = SubResource( 4 )
 Button/styles/normal = SubResource( 5 )
 Button/styles/pressed = SubResource( 6 )
 
-[node name="popup" type="Popup"]
+[node name="popup" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = SubResource( 2 )
-popup_exclusive = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0

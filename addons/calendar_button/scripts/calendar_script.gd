@@ -7,7 +7,7 @@ var calendar := Calendar.new()
 var selected_date := Date.new()
 var window_restrictor := WindowRestrictor.new()
 
-var popup : Popup
+var popup : Control
 var calendar_buttons : CalendarButtons
 
 func _enter_tree():
@@ -32,14 +32,14 @@ func create_button_texture(var image_name : String) -> ImageTexture:
 	image_texture_normal.create_from_image(image_normal)
 	return image_texture_normal
 	
-func create_popup_scene() -> Popup:
-	return preload("res://addons/calendar_button/popup.tscn").instance() as Popup
+func create_popup_scene() -> Control:
+	return preload("res://addons/calendar_button/popup.tscn").instance() as Control
 
 func create_calendar_buttons() -> CalendarButtons:
 	var calendar_container : GridContainer = popup.get_node("PanelContainer/vbox/hbox_days")
 	return CalendarButtons.new(self, calendar_container)
 
-func setup_month_and_year_signals(popup : Popup):
+func setup_month_and_year_signals(popup : Control):
 	var month_year_path = "PanelContainer/vbox/hbox_month_year/"
 	popup.get_node(month_year_path + "button_prev_month").connect("pressed",self,"go_prev_month")
 	popup.get_node(month_year_path + "button_next_month").connect("pressed",self,"go_next_month")
@@ -82,14 +82,14 @@ func close_popup():
 	set_pressed(false)
 
 func _toggled(is_pressed):
-	if(!has_node("popup")):
-		add_child(popup)
+	if(!get_parent().get_parent().get_parent().has_node("popup")):
+		get_parent().get_parent().get_parent().add_child(popup)
 	if(!is_pressed):
 		close_popup()
 	else:
-		if(has_node("popup")):
+		if(get_parent().get_parent().get_parent().has_node("popup")):
 			popup.show()
 		else:
-			add_child(popup)
+			get_parent().get_parent().get_parent().add_child(popup)
 	
 	window_restrictor.restrict_popup_inside_screen(popup)
