@@ -3,6 +3,7 @@ class_name ToDoItem
 
 signal update_data_button_pressed(node)
 signal delete_item(node)
+signal complete_item(node)
 
 var todo_item_resource: ToDoItemResource
 
@@ -61,3 +62,7 @@ func _on_complete_todo_toggled(button_pressed):
 	else:
 		$Done.visible = false
 		self.modulate = Color(1, 1, 1)
+	
+	todo_item_resource.complete_todo = button_pressed
+	
+	emit_signal("complete_item", self)

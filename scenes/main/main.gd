@@ -10,6 +10,8 @@ onready var edit_create_back = $EditCreateBack
 onready var search_line = $PanelBack/SearchLine
 
 func _ready():
+	randomize()
+	
 	edit_create_back.connect("saving_data_todo", self, "saving_data_todo")
 	var checking_file = File.new()
 	if checking_file.file_exists("user://items_paths.tres"):
@@ -24,6 +26,7 @@ func _ready():
 func init_item_signal(item_todo: ToDoItem):
 	item_todo.connect("update_data_button_pressed", self, "update_data_button_pressed")
 	item_todo.connect("delete_item", self, "queue_free_todo_item")
+	item_todo.connect("complete_item", self, "complete_item")
 
 
 func save_todo_item_path():
@@ -117,6 +120,11 @@ func update_data_button_pressed(item_todo: ToDoItem):
 	edit_create_back.set_edit_mode(edit_create_back.EditMode.Edit)
 
 
+
+func complete_item(item_todo: ToDoItem):
+	saving_data_todo(item_todo)
+
+
 func _on_exit_pressed():
 	edit_create_back.set_edit_mode(edit_create_back.EditMode.NotVisible)
 
@@ -129,16 +137,9 @@ func _on_add_new_todo_pressed():
 
 var ascii = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 func generate_unique_abbreviation(length: int) -> String:
+	
 	var result = ""
 	for i in range(length):
 		result += ascii[randi() % ascii.length()]
 	return result
-
-
-
-
-
-
-
-
 
