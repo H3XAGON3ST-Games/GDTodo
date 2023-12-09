@@ -1,0 +1,103 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Calendar",
+"language": "GDScript",
+"path": "res://addons/calendar_button/class/calendar.gd"
+}, {
+"base": "Reference",
+"class": "CalendarButtons",
+"language": "GDScript",
+"path": "res://addons/calendar_button/scripts/calendar_buttons.gd"
+}, {
+"base": "Reference",
+"class": "Date",
+"language": "GDScript",
+"path": "res://addons/calendar_button/class/Date.gd"
+}, {
+"base": "Panel",
+"class": "ToDoItem",
+"language": "GDScript",
+"path": "res://scenes/item_todo/item_todo.gd"
+}, {
+"base": "Resource",
+"class": "ToDoItemPath",
+"language": "GDScript",
+"path": "res://scenes/main/todo_resource_path.gd"
+}, {
+"base": "Resource",
+"class": "ToDoItemResource",
+"language": "GDScript",
+"path": "res://scenes/main/todo_resource.gd"
+}, {
+"base": "Reference",
+"class": "WindowRestrictor",
+"language": "GDScript",
+"path": "res://addons/calendar_button/scripts/window_restrictor.gd"
+} ]
+_global_script_class_icons={
+"Calendar": "",
+"CalendarButtons": "",
+"Date": "",
+"ToDoItem": "",
+"ToDoItemPath": "",
+"ToDoItemResource": "",
+"WindowRestrictor": ""
+}
+
+[application]
+
+config/name="GDTodo"
+run/main_scene="res://scenes/main/main.tscn"
+run/low_processor_mode=true
+boot_splash/show_image=false
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.176471, 1 )
+config/icon="res://icon.png"
+config/quit_on_go_back=false
+
+[autoload]
+
+Global="*res://global/singleton/global.gd"
+
+[display]
+
+window/size/width=720
+window/size/height=1280
+window/size/test_width=360
+window/size/test_height=640
+window/handheld/orientation="sensor_portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/calendar_button/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.141176, 0.141176, 0.176471, 1 )
+environment/default_environment="res://default_env.tres"
