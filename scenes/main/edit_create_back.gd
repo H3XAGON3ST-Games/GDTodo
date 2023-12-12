@@ -24,7 +24,7 @@ func set_date_for_item(value):
 		time_text.text = "Enter date"
 		return
 	
-	time_text.text = "%s.%s.%s" % [value.day(), value.month(), value.year()]
+	time_text.text = "%s.%s.%s" % [value.day, value.month, value.year]
 
 
 func set_edit_mode(value: int):
@@ -50,9 +50,9 @@ func read_data_from_todo():
 	
 	if object_edit.todo_item_resource.info_about_time.size() == 3:
 		date_for_item = Date.new()
-		date_for_item.set_day(object_edit.todo_item_resource.info_about_time[0])
-		date_for_item.set_month(object_edit.todo_item_resource.info_about_time[1])
-		date_for_item.set_year(object_edit.todo_item_resource.info_about_time[2])
+		date_for_item.day = (object_edit.todo_item_resource.info_about_time[0])
+		date_for_item.month = (object_edit.todo_item_resource.info_about_time[1])
+		date_for_item.year = (object_edit.todo_item_resource.info_about_time[2])
 		self.date_for_item = date_for_item
 	else:
 		set_date_for_item(null)
@@ -73,13 +73,13 @@ func _on_save_pressed():
 	if date_for_item != null:
 		print(object_edit.todo_item_resource.info_about_time)
 		if object_edit.todo_item_resource.info_about_time.size() == 3:
-			object_edit.todo_item_resource.info_about_time[0] = date_for_item.day()
-			object_edit.todo_item_resource.info_about_time[1] = date_for_item.month()
-			object_edit.todo_item_resource.info_about_time[2] = date_for_item.year()
+			object_edit.todo_item_resource.info_about_time[0] = date_for_item.day
+			object_edit.todo_item_resource.info_about_time[1] = date_for_item.month
+			object_edit.todo_item_resource.info_about_time[2] = date_for_item.year
 		elif object_edit.todo_item_resource.info_about_time.size() == 0:
-			object_edit.todo_item_resource.info_about_time.append(date_for_item.day())
-			object_edit.todo_item_resource.info_about_time.append(date_for_item.month())
-			object_edit.todo_item_resource.info_about_time.append(date_for_item.year())
+			object_edit.todo_item_resource.info_about_time.append(date_for_item.day)
+			object_edit.todo_item_resource.info_about_time.append(date_for_item.month)
+			object_edit.todo_item_resource.info_about_time.append(date_for_item.year)
 		print(object_edit.todo_item_resource.info_about_time)
 	
 	object_edit.update_resource_data()

@@ -26,7 +26,6 @@ func update_resource_data():
 		
 		var current_date = Time.get_date_dict_from_system()
 		
-		print(current_date)
 		if current_date["year"] > value[2]:
 			info_about_time.modulate = Color(0.9375, 0.45625, 0.45625)
 		elif current_date["year"] < value[2]:

@@ -52,9 +52,9 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = SubResource( 13 )
-shader_param/step_size = 5
+shader_param/step_size = 8
 shader_param/light_multiplier = 3.25
-shader_param/length_multiplier = 1.0
+shader_param/length_multiplier = 0.8
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.223529, 0.207843, 0.27451, 1 )

@@ -1,4 +1,3 @@
-#tool
 extends TextureButton
 
 signal date_selected(date_obj)
@@ -12,26 +11,11 @@ var calendar_buttons : CalendarButtons
 
 func _enter_tree():
 	set_toggle_mode(true)
-	setup_calendar_icon()
 	popup = create_popup_scene()
 	calendar_buttons = create_calendar_buttons()
 	setup_month_and_year_signals(popup)
 	refresh_data()
 
-func setup_calendar_icon():
-	var normal_texture := create_button_texture("btn_32x32_03.png")
-	set_normal_texture(normal_texture)
-
-	var pressed_texture := create_button_texture("btn_32x32_04.png")
-	set_pressed_texture(pressed_texture)
-
-func create_button_texture(var image_name : String) -> ImageTexture:
-	var image_normal := Image.new()
-	image_normal.load("res://addons/calendar_button/btn_img/" + image_name)
-	var image_texture_normal := ImageTexture.new()
-	image_texture_normal.create_from_image(image_normal)
-	return image_texture_normal
-	
 func create_popup_scene() -> Control:
 	return preload("res://addons/calendar_button/popup.tscn").instance() as Control
 
@@ -51,14 +35,14 @@ func set_popup_title(title : String):
 	label_month_year_node.set_text(title)
 
 func refresh_data():
-	var title : String = str(calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
+	var title : String = str(calendar.get_month_name(selected_date.month) + " " + str(selected_date.year))
 	set_popup_title(title)
 	calendar_buttons.update_calendar_buttons(selected_date)
 
 func day_selected(btn_node):
 	close_popup()
 	var day := int(btn_node.get_text())
-	selected_date.set_day(day)
+	selected_date.day = day
 	emit_signal("date_selected", selected_date)
 
 func go_prev_month():
